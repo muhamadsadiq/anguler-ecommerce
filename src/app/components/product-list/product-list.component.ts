@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from 'src/app/services/product-service';
 import { Product } from 'src/app/common/product';
 import { ActivatedRoute } from '@angular/router';
+import { CardItem } from 'src/app/common/card-item';
+import { CardService } from 'src/app/services/card-service.service';
 
 @Component({
   selector: 'app-product-list',
@@ -12,7 +14,7 @@ export class ProductListComponent implements OnInit {
   products: Product[] = [];
 
   searchMode: boolean = false;
-  previousKeyword:String="";
+  previousKeyword: String = '';
 
   currentCategoryId: number = 1;
   previousCategoryId: number = 1;
@@ -23,6 +25,7 @@ export class ProductListComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
+    private cardService: CardService,
     private route: ActivatedRoute
   ) {}
 
@@ -44,10 +47,10 @@ export class ProductListComponent implements OnInit {
   handleSearchProducts() {
     const theKeyword: string = this.route.snapshot.paramMap.get('keyword')!;
 
-    if(theKeyword!==this.previousKeyword){
-      this.thePageNumber=1;
+    if (theKeyword !== this.previousKeyword) {
+      this.thePageNumber = 1;
     }
-    this.previousKeyword=theKeyword;
+    this.previousKeyword = theKeyword;
     this.productService
       .searchProductsPaginate(
         theKeyword,
@@ -86,7 +89,11 @@ export class ProductListComponent implements OnInit {
       });
   }
 
-  addToCard(product:Product){
-    console.log(`Adding to card:${product.name} ,${product.unitPrice}`)
+  addToCard(product: Product) {
+    console.log(`Adding to card: ${product.name} ,${product.unitPrice}`);
+
+    const cardItem: CardItem = new CardItem(product);
+
+    this.cardService.addToCard(cardItem);
   }
 }
