@@ -324,6 +324,12 @@ input.au-input.au-input-xl{
     background:#fff;
     overflow-y:auto
 }
+.logo a{
+    text-decoration: none;
+    font-size: 22px;
+    font-weight: 600;
+    color: rgb(0, 58, 112);
+}
 
 .menu-sidebar .logo{
     background:#fff;
@@ -682,7 +688,11 @@ select{
  */
 
 .table{
-    margin:0
+    margin:0;
+}
+.btn{
+    background-color:#0b5ed7 !important; 
+    margin:10px 0 10px 8px     ;
 }
 table.table.table-bordered{
     border:1px solid #ccc;
@@ -693,21 +703,29 @@ table.table.table-bordered{
 }
 table.table.table-bordered th{
     BACKGROUND:#0da8e4;
-    color:#fff;
+    
     font-size:14px;
     padding:7px
 }
 .table-responsive{
     padding-right:1px
 }
-.items select{
-    width:100px;
+.items select ,#txtInput{
+    display: inline;
+    width:80px;
     height:40px;
-    border-radius:40px;
+    border-radius:10px;
     padding-left:15px;
     margin-bottom:10px;
     outline:0;
     margin-left:5px
+}
+.items select:hover{
+    cursor: pointer;
+}
+#txtInput{
+    border: solid;
+    border-color: #555;
 }
 
 /* 
@@ -867,7 +885,7 @@ footer ul li{
         min-width:350px
     }
       .logo{
-        text-align:center
+        text-align:center;
     }
     .header-desktop{
         position:relative;
